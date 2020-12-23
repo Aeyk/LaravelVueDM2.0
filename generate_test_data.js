@@ -13,7 +13,7 @@ function generate_csv(n /*: number*/) {
     let uuid = faker.random.uuid(); 
     let name = faker.name.findName(); 
     let zip = faker.address.zipCode();
-    rows.push({ uuid: uuid, name: name, zip: zip });
+    rows.push({ id: time, name: name, zip: zip });
   }
   return rows;
 }
