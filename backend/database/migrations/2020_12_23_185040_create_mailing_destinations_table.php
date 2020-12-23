@@ -14,8 +14,10 @@ class CreateMailingDestinationsTable extends Migration
     public function up()
     {
         Schema::create('mailing_destinations', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->timestamps();
+            $table->string('name');
+            $table->string('zipCode');
         });
     }
 
