@@ -10,8 +10,9 @@
 
     <div class="form-upload-group">
       <b-form-file
-        v-model="file1"
-        :state="Boolean(file1)"
+        @change="selectFile"
+
+        :state="Boolean(form.csv_file)"
         placeholder="Choose a file or drop it here..."
         drop-placeholder="Drop file here..."
       ></b-form-file>
@@ -24,7 +25,7 @@
 
     <div class="form-mailing-name-group">
     <p>Mailing Name: '{{ form.date }}'</p>
-    <div class="mt-3">Selected file: {{ file1 ? file1.name : '' }}</div>
+    <div class="mt-3">Selected file: {{ form.csv_file ? form.csv_file.name : '' }}</div>
     </div>
     <b-button type="submit">Submit</b-button>
     </b-form>
@@ -37,14 +38,25 @@ export default {
   methods: {
     onSubmit(e) {
       event.preventDefault();
-      // TODO make this into a AJAX call
-      // alert(JSON.stringify(this.form));
+
+      var data = new FormData();
+      e.target.querySelector("input[type=file]").files[0].text()
+       .then(d =>
+         // TODO make this into a AJAX call
+         console.log(d)
+       );
+      data.append('csv_file', this.form.csv_file);
+    },
+    selectFile(e) {
+      this.form.csv_file = e.target.files[0];
+      var data = new FormData();
+      data.append('csv_file', this.form.csv_file);
     },
   },
   data() {
     return {
       form:  {
-        file1: null,
+        csv_file: null,
         date: new Date(),
         name: ""
       }

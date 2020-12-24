@@ -3,6 +3,7 @@
     <h1>{{ msg }}</h1>
     <a href="/mailing_lists/upload">Mailing List Upload</a>
     <a href="/mailing_lists">List of Mailing</a>
+
   </div>
 </template>
 
