@@ -4,3 +4,6 @@
 *.csv
 /test_data.json
 /test_data.sql
+/backend/public/js/
+/backend/public/css/
+*.csv
