@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <b-table-lite striped hover :items="mailing_lists"
+                  selectable="true"
                   td-attr=""
                   @row-clicked="myRowClickHandler"></b-table-lite>
   </div>
@@ -10,6 +11,7 @@
 export default {
   name: 'MailingListIndex',
   methods: {myRowClickHandler(record, index) {
+    
     // 'record' will be the row data from items
     // `index` will be the visible row number (available in the v-model 'shownItems')
     console.log(record.csv); // This will be the item data for the row

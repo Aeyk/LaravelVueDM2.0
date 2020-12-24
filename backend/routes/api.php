@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Models\MailingList;
 use App\Http\Controllers\MailingListController;
+use App\Http\Controllers\MailingListsController;
 use App\Http\Resources\MailingListResource;
 
     /*
@@ -23,12 +24,20 @@ use App\Http\Resources\MailingListResource;
 // });
 
 
-Route::get('/mailing_list/{id}.json', function ($id) {
-    return new MailingListResource(MailingList::findOrFail($id));
-});
+// Route::get('/mailing_list/{id}.json', function ($id) {
+//     return new MailingListResource(MailingList::findOrFail($id));
+// });
 
 
-Route::resource('/mailing_lists', MailingListController::class, [
+Route::resource('/mailing_list/', MailingListController::class, [
     'except' => ['delete']
 ]);
+
+
+Route::resource('/mailing_lists/', MailingListsController::class, [
+    'except' => ['delete']
+]);
+
+Route::post('/mailing_list/upload', 'MailingListsController@upload');
+
 

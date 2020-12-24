@@ -47,6 +47,7 @@ export default {
         file.text()
             .then(d => {
               // TODO make this into a AJAX call
+              console.log(d)
               axios({
                 method: 'post',
                 url: "/api/mailing_list/create"})
