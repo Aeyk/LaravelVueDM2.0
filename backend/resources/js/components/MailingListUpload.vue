@@ -47,9 +47,14 @@ export default {
         file.text()
             .then(d => {
               // TODO make this into a AJAX call
-              console.log(d)
+              axios({
+                method: 'post',
+                url: "/api/mailing_list/create"})
+                .then(d => {
+                  console.log(d)
+                });
             });
-      }      
+      }
       data.append('csv_file', this.form.csv_file);
     },
     selectFile(e) {
