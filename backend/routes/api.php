@@ -28,10 +28,6 @@ Route::get('/mailing_list/{id}.json', function ($id) {
 });
 
 
-Route::resource('/mailing_list', MailingListController::class, [
-    'except' => ['delete']
-]);
-
 Route::resource('/mailing_lists', MailingListController::class, [
     'except' => ['delete']
 ]);

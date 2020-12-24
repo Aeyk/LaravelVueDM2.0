@@ -32,3 +32,7 @@ Route::get('/mailing_lists/index', function () {
 Route::get('/mailing_list', function () {
     return view("mailing_list");
 });
+
+Route::get('/mailing_list/{id}', function () {
+    return view("mailing_list");
+});
