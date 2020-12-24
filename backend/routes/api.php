@@ -3,7 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Models\MailingList;
 use App\Http\Controllers\MailingListController;
+use App\Http\Resources\MailingListResource;
 
     /*
 |--------------------------------------------------------------------------
@@ -21,4 +23,8 @@ use App\Http\Controllers\MailingListController;
 // });
 
 Route::get('/mailing_lists', [MailingListController::class, 'index']);
+
+Route::get('/mailing_list/{id}', function ($id) {
+    return new MailingListResource(MailingList::findOrFail($id));
+});
 
