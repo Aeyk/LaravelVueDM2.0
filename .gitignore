@@ -1,2 +1,6 @@
 /DM20 Laravel Vue Programming Test.pdf
 /backend/database/seeds/csvs/*.csv
+/vendor/
+*.csv
+/test_data.json
+/test_data.sql

@@ -13,12 +13,10 @@ function generate_csv(n /*: number*/) {
     let uuid = faker.random.uuid(); 
     let name = faker.name.findName(); 
     let zip = faker.address.zipCode();
-    rows.push({ id: time, name: name, zip: zip });
+    rows.push({ usersname: name, zip: zip });
   }
   return rows;
 }
-
-
 
 function write_to_file(what, where) {
   fs.writeFile(where, what, (err) => {
@@ -27,4 +25,4 @@ function write_to_file(what, where) {
   });
 }
 
-write_to_file(JSON.stringify(generate_csv(10000)), "test_data.csv");
+write_to_file(JSON.stringify(generate_csv(10000)), "test_data.json");

@@ -15,7 +15,9 @@ class CreateMailingDestinationsTable extends Migration
     {
         Schema::create('mailing_destinations', function (Blueprint $table) {
             $table->increments('id');
+
             $table->timestamps();
+
             $table->string('name');
             $table->string('zipCode');
         });
