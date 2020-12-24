@@ -1,16 +1,17 @@
 <template>
   <div class="container">
-    <h1>{{ msg }}</h1>
-    <a href="/#/upload">Mailing List Upload</a>
-    <a href="/#/mailing_lists">List of Mailing</a>
+    <b-table striped hover :items="mailing_lists"></b-table>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'MailingListHomepage',
-  props: {
-    msg: String
+  name: 'MailingListIndex',
+  data()  {
+    return {
+      mailing_lists: [
+      ]
+    }
   }
 }
 </script>
@@ -22,17 +23,9 @@ h1 {
   grid-column-start: 1;
   grid-column-end: 3;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
 .container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
 }
 a {
   color: #42b983;

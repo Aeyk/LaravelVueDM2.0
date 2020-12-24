@@ -25,4 +25,4 @@ function write_to_file(what, where) {
   });
 }
 
-write_to_file(JSON.stringify(generate_csv(10000)), "test_data.json");
+write_to_file(JSON.stringify(generate_csv(25)), "test_data.json");
