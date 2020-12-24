@@ -13,7 +13,6 @@ use App\Http\Controllers\MailingListController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -24,4 +23,12 @@ Route::get('/mailing_lists', function () {
 
 Route::get('/mailing_lists/upload', function () {
     return view("mailing_lists_upload");
+});
+
+Route::get('/mailing_lists/index', function () {
+    return view("mailing_lists_index");
+});
+
+Route::get('/mailing_list', function () {
+    return view("mailing_list");
 });

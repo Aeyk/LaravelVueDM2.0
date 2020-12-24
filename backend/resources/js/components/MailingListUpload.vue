@@ -3,8 +3,10 @@
     <h1>Mailing List Upload</h1>
     <label for="name">Mailing List Name</label>
 
-    <b-form-input v-model="mailing_list_name" placeholder="Enter your name"></b-form-input>
-    <p>Value: '{{ mailing_list_name }}'</p>
+    <b-form @submit="onSubmit">
+    <b-form-input
+      v-model="form.name" placeholder="Enter your name"></b-form-input>
+    <p>Value: '{{ form.name }}'</p>
 
     <div class="form-upload-group">
       <b-form-file
@@ -13,33 +15,39 @@
         placeholder="Choose a file or drop it here..."
         drop-placeholder="Drop file here..."
       ></b-form-file>
-      
     </div>
 
     <div class="form-date-group">
     <label for="date">Choose a date</label>
-    <b-form-datepicker id="name" v-model="date" class="mb-2"></b-form-datepicker>
+    <b-form-datepicker id="name" v-model="form.date" class="mb-2"></b-form-datepicker>
     </div>
 
     <div class="form-mailing-name-group">
-    <p>Mailing Name: '{{ date }}'</p>
+    <p>Mailing Name: '{{ form.date }}'</p>
     <div class="mt-3">Selected file: {{ file1 ? file1.name : '' }}</div>
     </div>
-    <b-button>Submit</b-button>
+    <b-button type="submit">Submit</b-button>
+    </b-form>
   </div>
 </template>
 
 <script>
 export default {
   name: 'MailingListUpload',
-  props: {
-    name: String
+  methods: {
+    onSubmit(e) {
+      event.preventDefault();
+      // TODO make this into a AJAX call
+      // alert(JSON.stringify(this.form));
+    },
   },
   data() {
     return {
-      file1: null,
-      file2: null,
-      date: new Date()
+      form:  {
+        file1: null,
+        date: new Date(),
+        name: ""
+      }
     }
   }
 }

@@ -1,15 +1,23 @@
 <template>
   <div class="container">
-    <b-table striped hover :items="mailing_lists"></b-table>
+    <b-table-lite striped hover :items="mailing_lists"
+                  td-attr=""
+                  @row-clicked="myRowClickHandler"></b-table-lite>
   </div>
 </template>
 
 <script>
 export default {
   name: 'MailingListIndex',
+  methods: {myRowClickHandler(record, index) {
+    // 'record' will be the row data from items
+    // `index` will be the visible row number (available in the v-model 'shownItems')
+    console.log(record.csv); // This will be the item data for the row
+  }},
   data()  {
     return {
       mailing_lists: [
+        {id: 0, name: "Malik Kennedy", csv: "mailing_list_0.csv"}
       ]
     }
   }

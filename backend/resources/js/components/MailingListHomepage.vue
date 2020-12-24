@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <h1>{{ msg }}</h1>
-    <a href="/#/upload">Mailing List Upload</a>
-    <a href="/#/mailing_lists">List of Mailing</a>
+    <a href="/mailing_lists/upload">Mailing List Upload</a>
+    <a href="/mailing_lists">List of Mailing</a>
   </div>
 </template>
 
