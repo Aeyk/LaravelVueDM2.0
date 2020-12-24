@@ -40,11 +40,16 @@ export default {
       event.preventDefault();
 
       var data = new FormData();
-      e.target.querySelector("input[type=file]").files[0].text()
-       .then(d =>
-         // TODO make this into a AJAX call
-         console.log(d)
-       );
+      let csv_file_uploader_form = 
+        e.target.querySelector("input[type=file]");
+      if(csv_file_uploader_form.files[0]) {
+        let file = csv_file_uploader_form.files[0];
+        file.text()
+            .then(d => {
+              // TODO make this into a AJAX call
+              console.log(d)
+            });
+      }      
       data.append('csv_file', this.form.csv_file);
     },
     selectFile(e) {

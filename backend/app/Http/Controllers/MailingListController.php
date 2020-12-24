@@ -27,4 +27,8 @@ class MailingListController extends Controller
     function create() {
         return view('mailing_list.create');
     }
+
+    function uploadMailingList(Request $request) {
+        return $request;
+    }
 }
