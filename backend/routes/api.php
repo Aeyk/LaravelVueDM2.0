@@ -22,9 +22,11 @@ use App\Http\Resources\MailingListResource;
 //     return $request->user();
 // });
 
-Route::get('/mailing_lists', [MailingListController::class, 'index']);
-
 Route::get('/mailing_list/{id}', function ($id) {
     return new MailingListResource(MailingList::findOrFail($id));
 });
+
+Route::resource('/mailing_lists', MailingListController::class, [
+    'except' => ['edit', 'show', 'store']
+]);
 

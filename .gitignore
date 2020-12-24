@@ -7,3 +7,5 @@
 /backend/public/js/
 /backend/public/css/
 *.csv
+/backend/vendor/*
+/backend/node_modules/*
