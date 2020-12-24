@@ -21,3 +21,7 @@ Route::get('/', function () {
 Route::get('/mailing_lists', function () {
     return view("mailing_lists");
 });
+
+Route::get('/mailing_lists/upload', function () {
+    return view("mailing_lists_upload");
+});
