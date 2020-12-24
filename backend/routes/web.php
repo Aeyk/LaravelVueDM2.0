@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MailingListController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,5 +19,5 @@ Route::get('/', function () {
 });
 
 Route::get('/mailing_lists', function () {
-    return view('mailing_lists');
+    return view("mailing_lists");
 });

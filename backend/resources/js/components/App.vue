@@ -1,17 +1,19 @@
-<template>
+.<template>
   <div id="app">
     <MailingListHomepage msg="Mailing Lists"/>
-    <MailingListUpload name="" date="Date.now()" />
-    <MailingListIndex></MailingListIndex>
-    <MailingList></MailingList>
+    <!-- <MailingListUpload name="" date="Date.now()" /> -->
+    <!-- <MailingListIndex></MailingListIndex> -->
+    <!-- <MailingList></MailingList> -->
   </div>
 </template>
 
 <script>
+
 import MailingListHomepage from './MailingListHomepage.vue'
-import MailingListUpload from './MailingListUpload.vue'
-import MailingListIndex from './MailingListIndex.vue'
-import MailingList from './MailingList.vue'
+
+// import MailingListUpload from './components/MailingListUpload.vue'
+// import MailingListIndex from './components/MailingListIndex.vue'
+// import MailingList from './components/MailingList.vue'
 
 export default {
   name: 'App',
@@ -19,7 +21,7 @@ export default {
     MailingListHomepage,
     //     MailingListUpload,
     //     MailingListIndex,
-    MailingList
+    //     MailingList
   }
 }
 </script>

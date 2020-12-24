@@ -22,7 +22,7 @@ use App\Http\Resources\MailingListResource;
 //     return $request->user();
 // });
 
-Route::get('/mailing_list/{id}', function ($id) {
+Route::get('/mailing_list/{id}.json', function ($id) {
     return new MailingListResource(MailingList::findOrFail($id));
 });
 
