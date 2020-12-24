@@ -2,7 +2,7 @@
   <div class="container">
     <h1>{{ msg }}</h1>
     <a href="/mailing_lists/upload">Mailing List Upload</a>
-    <a href="/mailing_lists">List of Mailing</a>
+    <a href="/mailing_list">List of Mailing</a>
 
   </div>
 </template>
@@ -19,7 +19,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h1 {
-  margin: 40px 0 0;
+  margin: 10px 0 0;
   grid-column-start: 1;
   grid-column-end: 3;
 }

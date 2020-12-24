@@ -12,7 +12,7 @@ export default {
   methods: {myRowClickHandler(record, index) {
     // 'record' will be the row data from items
     // `index` will be the visible row number (available in the v-model 'shownItems')
-    console.log(record.csvb); // This will be the item data for the row
+    console.log(record.csv); // This will be the item data for the row
   }},
   data()  {
     return {

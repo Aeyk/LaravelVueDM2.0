@@ -68,7 +68,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h1 {
-  margin: 40px 0 0;
+  margin: 20px 0 0;
 }
 button, h1 {
   grid-column-start: 1;
@@ -77,7 +77,9 @@ button, h1 {
 a {
   color: #42b983;
 }
-.container {
+
+form
+{
   display: grid;
   grid-template-columns: 1fr 1fr;
 }

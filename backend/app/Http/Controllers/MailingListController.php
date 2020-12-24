@@ -17,4 +17,14 @@ class MailingListController extends Controller
         //     echo var_dump($mailing_list);
         // }
     }
+
+    function show($id) {
+        $mailing_lists = DB::table('mailing_lists')->get();
+        return DB::select('select * from mailing_lists where id = ?',
+                          [$id]);
+    }
+
+    function create() {
+        return view('mailing_list.create');
+    }
 }
