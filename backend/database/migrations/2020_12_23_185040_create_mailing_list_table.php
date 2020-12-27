@@ -13,13 +13,18 @@ class CreateMailingListTable extends Migration
      */
     public function up()
     {
-        Schema::create('mailing_lists', function (Blueprint $table) {
+        Schema::create('mailing_list', function (Blueprint $table) {
             $table->increments('id');
 
             $table->timestamps();
 
             $table->string('name')->nullable();
             $table->string('zipCode')->nullable();
+
+            $table->integer('mailing_list_group_id')->unsigned()
+                  ->references('id')
+                  ->on('mailing_list_group');
+
         });
     }
 
@@ -32,7 +37,6 @@ class CreateMailingListTable extends Migration
     {
 
         Schema::dropIfExists('mailing_list');
-        Schema::dropIfExists('mailing_lists');
 
     }
 }

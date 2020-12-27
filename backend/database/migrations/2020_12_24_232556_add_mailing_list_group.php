@@ -12,6 +12,7 @@ class AddMailingListGroup extends Migration
             Schema::create('mailing_list_group', function (Blueprint $table) {
                 $table->increments('id');
             });
+            
         }
 
     /**
