@@ -2,7 +2,7 @@
   <div class="container">
     <h1>{{ msg }}</h1>
     <a href="/mailing_lists/upload">Mailing List Upload</a>
-    <a href="/mailing_list">List of Mailing</a>
+    <a href="/mailing_lists">Mailing Lists</a>
 
   </div>
 </template>
