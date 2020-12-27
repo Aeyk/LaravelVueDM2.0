@@ -16,7 +16,8 @@ export default {
     const urlParams = new URLSearchParams(window.location.search);
     const m = urlParams.get('group_id');
 
-    let url = "/api/mailing_list/" + (record.mailing_list_group_id || 0) + ".json";
+    // let url = "/mailing_list?" + (record.mailing_list_group_id || 0) + ".json";
+    let url = "/mailing_list?group_id=" + (record.mailing_list_group_id || 0);
     console.log(url);
 
     document.location = url;

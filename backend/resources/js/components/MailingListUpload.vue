@@ -58,8 +58,9 @@ export default {
           console.log(obj)
           axios.post("/api/mailing_lists/upload",
                      obj);
-        });
+          let url = "/mailing_list?group_id=" + (obj.mailing_list_group_id || 0);          document.location = url;
 
+        });
         data.append('csv_file', this.form.csv_file);
       }
     },
