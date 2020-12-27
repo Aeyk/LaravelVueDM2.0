@@ -28,14 +28,24 @@ class MailingListsController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'csv' => 'required'
-        ]);
 
         MailingLists::create($request->all());
 
         return redirect()->route('mailing_lists.index')
                          ->with('success', 'MailingList uploaded successfully..');
+    }
+
+    public function upload(Request $request){
+        // $request->validate([
+        //     'csv_blob' => 'required|max:2048'
+        // ]);
+
+        MailingLists::insert($request->all());
+
+        
+        return $request;
+
+        // MailingLists::create($request->all());
+
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMailingDestinationsTable extends Migration
+class CreateMailingListTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateMailingDestinationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('mailing_destinations', function (Blueprint $table) {
+        Schema::create('mailing_lists', function (Blueprint $table) {
             $table->increments('id');
 
             $table->timestamps();
 
-            $table->string('name');
-            $table->string('zipCode');
+            $table->string('name')->nullable();
+            $table->string('zipCode')->nullable();
         });
     }
 
@@ -30,6 +30,9 @@ class CreateMailingDestinationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mailing_destinations');
+
+        Schema::dropIfExists('mailing_list');
+        Schema::dropIfExists('mailing_lists');
+
     }
 }

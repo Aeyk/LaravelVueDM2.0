@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class MailingList extends Model
 {
     use HasFactory;
+    public $timestamps = true;
+
 }

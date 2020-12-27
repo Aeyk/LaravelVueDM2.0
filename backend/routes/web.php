@@ -29,6 +29,12 @@ Route::get('/mailing_lists/index', function () {
     return view("mailing_lists_index");
 });
 
+
+Route::get('/mailing_list/{id}.csv', function () {
+    return view("mailing_list");
+});
+
+
 Route::get('/mailing_list', function () {
     return view("mailing_list");
 });

@@ -33,30 +33,28 @@
 </template>
 
 <script>
+let id = x => x;
 export default {
   name: 'MailingListUpload',
   methods: {
     onSubmit(e) {
-      event.preventDefault();
-
+      e.preventDefault();
       var data = new FormData();
       let csv_file_uploader_form = 
         e.target.querySelector("input[type=file]");
       if(csv_file_uploader_form.files[0]) {
         let file = csv_file_uploader_form.files[0];
-        file.text()
-            .then(d => {
-              // TODO make this into a AJAX call
-              console.log(d)
-              axios({
-                method: 'post',
-                url: "/api/mailing_list/create"})
-                .then(d => {
-                  console.log(d)
-                });
-            });
+        let text = "";
+        file.text().then(d => {
+          text = d;
+          let obj = {csv_blob: text, name: this.form.name};
+          console.log(obj)
+          axios.post("/api/mailing_lists/upload",
+                     obj);
+        });
+
+        data.append('csv_file', this.form.csv_file);
       }
-      data.append('csv_file', this.form.csv_file);
     },
     selectFile(e) {
       this.form.csv_file = e.target.files[0];

@@ -1,9 +1,9 @@
 <template>
   <div class="container">
-    <b-table-lite striped hover :items="mailing_lists"
-                  selectable="true"
+    <b-table striped hover :items="mailing_lists"
                   td-attr=""
-                  @row-clicked="myRowClickHandler"></b-table-lite>
+                  @row-clicked="myRowClickHandler"></b-table>
+    <b-button href="/mailing_lists/upload">Upload</b-button>
   </div>
 </template>
 
@@ -11,16 +11,24 @@
 export default {
   name: 'MailingListIndex',
   methods: {myRowClickHandler(record, index) {
-    
     // 'record' will be the row data from items
     // `index` will be the visible row number (available in the v-model 'shownItems')
-    console.log(record.csv); // This will be the item data for the row
+    let url = "/mailing_list/" + record.id + ".csv";
+    console.log(url);
+
+    document.location = url;
+    
   }},
   data()  {
     return {
-      mailing_lists: [
-        {id: 0, name: "Malik Kennedy", csv: "mailing_list_0.csv"}
-      ]
+      mailing_lists:
+      axios({
+        url: '/api/mailing_lists/',
+        method: 'GET'})
+        .then(d => {
+          console.log(d.data.data);
+          this.mailing_lists = d.data.data;
+        }),
     }
   }
 }

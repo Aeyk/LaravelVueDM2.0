@@ -36,20 +36,10 @@ class MailingListController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'csv' => 'required'
-        ]);
-
-        Product::create($request->all());
+        MailingList::create($request->all());
 
         return redirect()->route('mailing_list_group.index')
                          ->with('success', 'MailingList uploaded successfully..');
     }
-    
-
-
-    function uploadMailingList(Request $request) {
-        return $request;
-    }
+        
 }

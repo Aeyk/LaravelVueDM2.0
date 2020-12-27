@@ -1,10 +1,10 @@
 var faker = require("faker");
 var fs = require('fs');
-
+var json2csv = require('json-2-csv');
 
 let range = n => [...Array(n).keys()];
 
-function generate_csv(n /*: number*/) {
+function generate(n /*: number*/) {
   /* => {UUID, String, String (of Number)} */
 
   let times = range(n);
@@ -25,4 +25,14 @@ function write_to_file(what, where) {
   });
 }
 
-write_to_file(JSON.stringify(generate_csv(25)), "test_data.json");
+function csv(json, callback, csv_file_name_dest) {
+  json2csv.json2csv(json, (err, ok) => {
+    if (err) throw err;
+    console.log("There appear to be no errors in converting to csv");
+    callback(ok, csv_file_name_dest);
+  });
+}
+
+
+csv(generate(25), write_to_file, "test_data.csv");
+

@@ -1,21 +1,38 @@
 <template>
   <div class="container">
-    <b-table striped hover :items="mailing_list_contents"></b-table>
+    <b-table striped hover
+             @row-clicked="myRowClickHandler"
+             :items="mailing_list_contents"></b-table>
+    <b-button href="/api/mailing_list/0.json">Download</b-button>
   </div>
 </template>
 
 <script>
 export default {
   name: 'MailingList',
+  methods: {
+    myRowClickHandler(record, index) {
+      // 'record' will be the row data from items
+      // `index` will be the visible row number (available in the v-model 'shownItems')
+      let url = "/mailing_list/" + record.id + ".csv";
+      console.log(url);
+
+      document.location = url;
+
+      
+    }
+
+  },
   data()  {
     return {
       mailing_list_contents:
       axios({
-        url: '/api/mailing_lists',
+        url: '/api/mailing_lists/',
         method: 'GET'})
-        .then(d => this.mailing_list_contents = d.data.data),
-
-      /*[{"usersname":"Diana Parisian","zip":"34060-0012"},{"usersname":"Mandy Dooley","zip":"71870"},{"usersname":"William Cassin","zip":"30366"},{"usersname":"Dianna Pagac","zip":"94659"},{"usersname":"Willis Pollich","zip":"46480-2864"},{"usersname":"Sheldon Hermiston","zip":"79341-2593"},{"usersname":"Connie Kautzer","zip":"42303-5265"},{"usersname":"Florence Tromp","zip":"03451-9318"},{"usersname":"Gertrude Klocko","zip":"71869-3333"},{"usersname":"Miss Priscilla Wintheiser","zip":"37382-7214"},{"usersname":"Robert Rau","zip":"23933-8871"},{"usersname":"Isaac Spencer","zip":"89045"},{"usersname":"Carol Boyer","zip":"54682"},{"usersname":"Pedro Friesen","zip":"83925-0882"},{"usersname":"Misty Kuvalis","zip":"35163-7714"},{"usersname":"Hope Quitzon","zip":"49600"},{"usersname":"Debbie Harris","zip":"42794-3962"},{"usersname":"Jermaine Armstrong","zip":"22111-4362"},{"usersname":"Winston Stark MD","zip":"73744-2310"},{"usersname":"Darrell Cormier","zip":"90337"},{"usersname":"Julian Crooks","zip":"43622-5643"},{"usersname":"Madeline Kemmer","zip":"22497-9595"},{"usersname":"Mr. Merle Jones","zip":"53862-0920"},{"usersname":"Teri O'Keefe","zip":"69924"},{"usersname":"Dr. Marco Hintz","zip":"09616"}]*/
+        .then(d => {
+          console.log(d.data.data);
+          this.mailing_list_contents = d.data.data;
+        }),
     }
   }
 }
