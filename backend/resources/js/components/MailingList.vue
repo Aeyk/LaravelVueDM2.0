@@ -7,6 +7,10 @@
 </template>
 
 <script>
+function my_csv_json(csv){
+  var result=csv.split(",");
+  return JSON.stringify(result); //JSON
+}
 export default {
   name: 'MailingList',
   methods: {
@@ -20,17 +24,20 @@ export default {
     }
   },
   data()  {
+    const urlParams = new URLSearchParams(window.location.search);
+    const m = urlParams.get('m');
+    var mailing_list_contents;
+    axios({ 
+      url: "/api/mailing_list/" + (m || 0) + ".json",
+      method: 'GET'})
+      .then(d => {
+        console.log(d.data.map(x => x.csv_blob)[0].split('\n').map(x => x.split(',')));
+        mailing_list_contents = d.data.map(x => x.csv_blob)[0].split('\n').map(x => x.split(','));
+        this.mailing_list_contents = mailing_list_contents;
+      });
     return {
       id: 0,
-      mailing_list_contents:
-      axios({
-        url: "/api/mailing_lists/" + (this.$route.query.page || 0) + ".json",
-        method: 'GET'})
-        .then(d => {
-          console.log(d.data.data,
-          "1" + "2");
-          this.mailing_list_contents = d.data.data;
-        }).csv_blob,
+      mailing_list_contents: mailing_list_contents
     }
   }
 }
