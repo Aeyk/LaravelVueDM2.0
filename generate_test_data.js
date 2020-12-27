@@ -3,7 +3,6 @@ var fs = require('fs');
 var json2csv = require('json-2-csv');
 
 let range = n => [...Array(n).keys()];
-
 function generate(n /*: number*/) {
   /* => {UUID, String, String (of Number)} */
 
@@ -23,6 +22,7 @@ function write_to_file(what, where) {
     if (err) throw err;
     console.log("There appear to be no errors in writing to ", where);
   });
+  return what;
 }
 
 function csv(json, callback, csv_file_name_dest) {
@@ -34,5 +34,12 @@ function csv(json, callback, csv_file_name_dest) {
 }
 
 
-csv(generate(25), write_to_file, "test_data.csv");
+function json(json, callback, json_file_name_dest) {
+  callback(JSON.stringify(json), json_file_name_dest);
+}
+
+
+// json(generate(25), write_to_file, "test_data.json");
+csv(generate(1000000), write_to_file, "test_data_100k.csv");
+
 
