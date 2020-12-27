@@ -1,2 +1,26 @@
-* LatsaVueatifulCode DM2.0 Lavarel + Vue
-  
+* LatsaVueatifulCode DM2.0 Laravel + Vue
+
+** Generating CSV
+#+begin_src sh
+  node ./generate_test_data.js
+#+end_src
+** Importing CSV to MySQL database
+   #+begin_src
+     csv2sql all laravel.mailing_lists -i ./test_data_100k.csv  -o test_data_100k.sql
+     mariadb-import laravel mailing_lists ./test_data_100k.sql
+   #+end_src
+** Starting Server Locally
+   #+begin_src sh
+     # if you haven't yet you must also migrate:
+     # php artisan migrate
+
+     php artisan serve
+   #+end_src
+
+   You should then be able to browse to [[http://localhost:8000/]].
+** Development
+   If you wish to make any changes to the Vue UI it's recommended to run
+   #+begin_src sh
+npm run watch
+   #+end_src
+   to watch for changes and compile them.
