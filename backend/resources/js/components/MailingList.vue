@@ -17,7 +17,9 @@ export default {
     myRowClickHandler(record, index) {
       // 'record' will be the row data from items
       // `index` will be the visible row number (available in the v-model 'shownItems')
-      let url = "/mailing_list/" + record.id + ".csv";
+      const urlParams = new URLSearchParams(window.location.search);
+      const m = urlParams.get('group_id');
+      let url = "/api/mailing_list/" + (m || 0) + ".json";
       console.log(url);
       this.id = record.id;
       // document.location = url;
@@ -25,7 +27,7 @@ export default {
   },
   data()  {
     const urlParams = new URLSearchParams(window.location.search);
-    const m = urlParams.get('m');
+    const m = urlParams.get('group_id');
     var mailing_list_contents;
     axios({ 
       url: "/api/mailing_list/" + (m || 0) + ".json",

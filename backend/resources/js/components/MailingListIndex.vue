@@ -13,7 +13,10 @@ export default {
   methods: {myRowClickHandler(record, index) {
     // 'record' will be the row data from items
     // `index` will be the visible row number (available in the v-model 'shownItems')
-    let url = "/mailing_lists/" + record.id + ".csv";
+    const urlParams = new URLSearchParams(window.location.search);
+    const m = urlParams.get('group_id');
+
+    let url = "/api/mailing_list/" + (record.mailing_list_group_id || 0) + ".json";
     console.log(url);
 
     document.location = url;

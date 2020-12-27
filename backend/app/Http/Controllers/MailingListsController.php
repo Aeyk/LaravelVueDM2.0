@@ -11,7 +11,7 @@ class MailingListsController extends Controller
 {
     //
     function index() {
-        $mailing_lists = MailingLists::latest()->paginate(5);
+        $mailing_lists = MailingLists::paginate(25);
         return $mailing_lists;
     }
 
