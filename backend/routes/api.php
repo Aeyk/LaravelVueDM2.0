@@ -27,22 +27,24 @@ use App\Http\Resources\MailingListsResource;
 
 
 
-Route::get('/mailing_lists/{id}.csv', function ($id) {
-    return new MailingListsResource(MailingLists::findOrFail($id));
-});
-
-Route::get('/mailing_list/{id}.csv', function ($id) {
-    return new MailingListResource(MailingList::findOrFail($id));
-});
-
-
 Route::get('/mailing_lists/{id}.json', function ($id) {
     return new MailingListsResource(MailingLists::findOrFail($id));
 });
 
 Route::get('/mailing_list/{id}.json', function ($id) {
-    return new MailingListResource(MailingList::findOrFail($id));
+    return
+        DB::select(
+            'select * from mailing_lists where mailing_list_group_id = ?',
+            [$id]);
 });
+
+Route::get('/mailing_list/{id}.json', function ($id) {
+    return
+        DB::select(
+            'select * from mailing_lists where mailing_list_group_id = ?',
+            [$id]);
+});
+
 
 
 Route::resource('/mailing_list/', MailingListController::class, [

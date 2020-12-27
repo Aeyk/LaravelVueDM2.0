@@ -30,8 +30,8 @@ Route::get('/mailing_lists/index', function () {
 });
 
 
-Route::get('/mailing_list/{id}.csv', function () {
-    return view("mailing_list");
+Route::get('/mailing_list/{id}.csv', function ($id) {
+    return view("mailing_list", ['id' => $id]);
 });
 
 

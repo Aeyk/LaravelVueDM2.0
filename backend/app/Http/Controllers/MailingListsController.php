@@ -16,20 +16,25 @@ class MailingListsController extends Controller
     }
 
     function show(MailingList $mailing_lists) {
-        // $mailing_lists = DB::table('mailing_lists')->get();
-        // return DB::select('select * from mailing_lists where id = ?',
-        //                   [$id]);
-        return view('mailing_lists.show', compact('mailing_lists'));
+        $mailing_lists = DB::table('mailing_lists')->get();
+        return DB::select('select * from mailing_lists where mailing_list_group_id = ?',
+                          [$id]);
+        // return view('mailing_lists.show', compact('mailing_lists'));
     }
 
     function create() {
+        $mailing_list_group_id = DB::select('SELECT ID FROM mailing_list_group ORDER BY ID DESC');
+
+        MailingLists::create(array_merge($request->all(), ['mailing_list_group_id' => $mailing_list_group_id]));
+
         return view('mailing_lists.create');
     }
 
     public function store(Request $request)
     {
+        $mailing_list_group_id = DB::select('SELECT ID FROM mailing_list_group ORDER BY ID DESC');
 
-        MailingLists::create($request->all());
+        MailingLists::create(array_merge($request->all(), ['mailing_list_group_id' => $mailing_list_group_id]));
 
         return redirect()->route('mailing_lists.index')
                          ->with('success', 'MailingList uploaded successfully..');

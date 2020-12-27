@@ -33,6 +33,13 @@
 </template>
 
 <script>
+
+let uuid = () => {
+  return 'xxx'.replace(/[xy]/g, function(c) {
+    var r = Math.random() * 10 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}
 let id = x => x;
 export default {
   name: 'MailingListUpload',
@@ -47,7 +54,7 @@ export default {
         let text = "";
         file.text().then(d => {
           text = d;
-          let obj = {csv_blob: text, name: this.form.name};
+          let obj = {csv_blob: text, name: this.form.name, mailing_list_group_id: uuid()};
           console.log(obj)
           axios.post("/api/mailing_lists/upload",
                      obj);

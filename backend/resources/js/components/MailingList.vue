@@ -15,23 +15,22 @@ export default {
       // `index` will be the visible row number (available in the v-model 'shownItems')
       let url = "/mailing_list/" + record.id + ".csv";
       console.log(url);
-
-      document.location = url;
-
-      
+      this.id = record.id;
+      // document.location = url;
     }
-
   },
   data()  {
     return {
+      id: 0,
       mailing_list_contents:
       axios({
-        url: '/api/mailing_lists/',
+        url: "/api/mailing_lists/" + (this.$route.query.page || 0) + ".json",
         method: 'GET'})
         .then(d => {
-          console.log(d.data.data);
+          console.log(d.data.data,
+          "1" + "2");
           this.mailing_list_contents = d.data.data;
-        }),
+        }).csv_blob,
     }
   }
 }
