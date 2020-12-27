@@ -3,7 +3,6 @@
     <b-table striped hover
              @row-clicked="myRowClickHandler"
              :items="mailing_list_contents"></b-table>
-    <b-button href="/api/mailing_list/0.json">Download</b-button>
   </div>
 </template>
 
