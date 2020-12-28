@@ -14,7 +14,7 @@ use App\Http\Controllers\MailingListController;
 |
 */
 Route::get('/', function () {
-    return view('welcome');
+    return view("mailing_lists");
 });
 
 Route::get('/mailing_lists', function () {
