@@ -30,6 +30,7 @@ export default {
         url: '/api/mailing_lists/',
         method: 'GET'})
         .then(d => {
+          d.data.data.map(d => delete d.csv_blob);
           console.log(d.data.data);
           this.mailing_lists = d.data.data;
         }),
@@ -44,6 +45,10 @@ h1 {
   margin: 40px 0 0;
   grid-column-start: 1;
   grid-column-end: 3;
+}
+
+#cell [aria-colindex=7] {
+  display: none;
 }
 .container {
   display: grid;
