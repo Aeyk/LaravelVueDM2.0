@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name: 'MailingListHomepage',
+  name: 'MailingListHeader',
   props: {
     msg: String
   }
