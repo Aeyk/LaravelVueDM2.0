@@ -30,7 +30,13 @@ export default {
         url: '/api/mailing_lists/',
         method: 'GET'})
         .then(d => {
-          d.data.data.map(d => delete d.csv_blob);
+          d.data.data.map(d => {
+            delete d.zipCode;
+            delete d.id;
+            delete d.csv_blob;
+            delete d.created_at;
+            delete d.updated_at;
+          });
           console.log(d.data.data);
           this.mailing_lists = d.data.data;
         }),
