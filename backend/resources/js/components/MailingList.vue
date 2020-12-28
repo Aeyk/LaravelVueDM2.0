@@ -3,17 +3,29 @@
     <b-table striped hover
              @row-clicked="myRowClickHandler"
              :items="mailing_list_contents"></b-table>
+    
+    <b-button v-on:click="downloadHandler();">Download</b-button>
+
   </div>
 </template>
 
 <script>
-function my_csv_json(csv){
-  var result=csv.split(",");
-  return JSON.stringify(result); //JSON
-}
-export default {
-  name: 'MailingList',
-  methods: {
+function     download(filename, text) {
+  var element = document.createElement('a');
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+  element.setAttribute('download', filename);
+
+  element.style.display = 'none';
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
+} 
+
+  export default {
+    name: 'MailingList',
+    methods: {
     myRowClickHandler(record, index) {
       // 'record' will be the row data from items
       // `index` will be the visible row number (available in the v-model 'shownItems')
@@ -22,7 +34,27 @@ export default {
       let url = "/api/mailing_list/" + (m || 0) + ".json";
       console.log(url);
       this.id = record.id;
+
       // document.location = url;
+      return url;
+    },
+    downloadHandler() {
+      // 'record' will be the row data from items
+      // `index` will be the visible row number (available in the v-model 'shownItems')
+      const urlParams = new URLSearchParams(window.location.search);
+      const m = urlParams.get('group_id');
+      let url = "/api/mailing_list/" + (m || 0) + ".csv";
+      console.log(url, m);
+      download(m + ".json", this.mailing_list_contents);
+      axios({ 
+        url: "/api/mailing_list/" + (m || 0) + ".json",
+        method: 'GET'})
+        .then(d => {
+          d.data.map(x => x.csv_blob)[0].split('\n').map(x => x.split(','));
+          mailing_list_contents = d.data.map(x => x.csv_blob)[0].split('\n').map(x => x.split(','));
+          
+        });
+      return url;
     }
   },
   data()  {
@@ -33,8 +65,9 @@ export default {
       url: "/api/mailing_list/" + (m || 0) + ".json",
       method: 'GET'})
       .then(d => {
-        console.log(d.data.map(x => x.csv_blob)[0].split('\n').map(x => x.split(',')));
+        d.data.map(x => x.csv_blob)[0].split('\n').map(x => x.split(','));
         mailing_list_contents = d.data.map(x => x.csv_blob)[0].split('\n').map(x => x.split(','));
+        
         this.mailing_list_contents = mailing_list_contents;
       });
     return {

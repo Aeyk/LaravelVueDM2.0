@@ -2,7 +2,7 @@
 
 
 @section('content')
-    <mailing-list-homepage></mailing-list-homepage>
+    <mailing-list-header></mailing-list-header>
     <mailing-list-index></mailing-list-index>
 @endsection
 
